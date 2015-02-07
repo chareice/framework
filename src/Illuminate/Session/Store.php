@@ -275,9 +275,14 @@ class Store implements SessionInterface {
 	 */
 	protected function addBagDataToSession()
 	{
-		foreach (array_merge($this->bags, array($this->metaBag)) as $bag)
-		{
-			$this->put($bag->getStorageKey(), $this->bagData[$bag->getStorageKey()]);
+		try{
+			foreach (array_merge($this->bags, array($this->metaBag)) as $bag)
+			{
+				$this->put($bag->getStorageKey(), $this->bagData[$bag->getStorageKey()]);
+			}
+
+		}catch(\Exception $e){
+			
 		}
 	}
 
